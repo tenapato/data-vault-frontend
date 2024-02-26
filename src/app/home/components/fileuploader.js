@@ -2,7 +2,9 @@
 import React from 'react';
 import { sendData  } from './upload';
 import { redirect } from "next/navigation";
-const FileUpload = async () => {
+import { buttonVariants } from '../../../components/ui/button'; // replace with the actual path
+
+const FileUpload = () => {
     const handleUpload = async (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -18,13 +20,22 @@ const FileUpload = async () => {
         reader.readAsDataURL(file); // Read the file as data URL
     };
 
-    return (
-        <input 
-            type="file" 
-            onChange={handleUpload} 
-            className="ml-auto" 
-        />
-    );
+  return (
+    <div className='ml-auto'>
+      <input 
+        type="file" 
+        id="file-upload"
+        onChange={handleUpload} 
+        className="hidden" // hide the file input
+      />
+      <label 
+        htmlFor="file-upload" 
+        className={buttonVariants()} // apply the styles to the label
+      >
+        Upload
+      </label>
+    </div>
+  );
 };
 
 export default FileUpload;
