@@ -75,7 +75,13 @@ export default async function Home(){
                     <TableCell>{file.filename}</TableCell>
                     <TableCell>{file.filename.split('.').pop()}</TableCell>
                     {/* <TableCell>{file.key}</TableCell> */}
-                    <TableCell>{(file.size / 1024).toFixed(3)} KB</TableCell>
+                    <TableCell>
+                      {file.size >= 1024 * 1024
+                        ? `${(file.size / (1024 * 1024)).toFixed(3)} MB`
+                        : file.size >= 1024
+                        ? `${(file.size / 1024).toFixed(3)} KB`
+                        : `${file.size} bytes`}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
