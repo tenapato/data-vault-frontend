@@ -51,14 +51,14 @@ export default async function Home(){
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
           <div className="flex items-center">
-            <h1 className="font-semibold text-lg md:text-2xl">Uploaded Files</h1>
-            <Button className="ml-auto" size="sm">
+            {/* <h1 className="font-semibold text-lg md:text-2xl">Uploaded Files</h1> */}
+            {/* <Button className="ml-auto" size="sm">
               Upload
-            </Button>
-            <div className="flex items-center">
-            <h1 className="font-semibold text-lg md:text-2xl">Uploaded Files</h1>
-            <FileUpload />
+            </Button> */}
           </div>
+          <div className="flex items-center">
+            <h1 className="font-semibold text-lg md:text-2xl mr-12">Uploaded Files</h1>
+            <FileUpload/>
           </div>
           <div className="border shadow-sm rounded-lg">
             <Table>
