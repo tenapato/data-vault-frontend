@@ -44,7 +44,7 @@ async function signIn(email, password) {
                 body: JSON.stringify({ email, password }) // Fixed the body parameter
             }
         ).then((response) => response.json());
-         console.log(response);
+        //  console.log(response);
         return response;
     } catch (error) {
         console.log(error);

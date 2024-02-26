@@ -11,9 +11,7 @@ const FileUpload = async () => {
             const base64 = event.target.result.split(',')[1]; // Extract base64 data from the result
             // Send the base64 data using the sendData method
             const data = { filename: file.name, base64 };
-            console.log(data);
             const response = await sendData(data.base64, data.filename);
-            console.log(response);
             redirect("/home");
         };
 
