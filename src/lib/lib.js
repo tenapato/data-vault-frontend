@@ -2,7 +2,7 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-const secretKey = "secret";
+const secretKey = process.env.SECRET_KEY;
 const key = new TextEncoder().encode(secretKey);
 
 export async function encrypt(payload) {
@@ -79,9 +79,14 @@ export async function logout() {
 }
 
 export async function getSession() {
-  const session = cookies().get("session")?.value;
-  if (!session) return null;
-  return await decrypt(session);
+  try {
+    const session = cookies().get("session")?.value;
+    if (!session) return null;
+    return await decrypt(session);
+  } catch (error) {
+    console.error('Failed to get session:', error);
+    return null;
+  }
 }
 
 export async function updateSession(request) {
