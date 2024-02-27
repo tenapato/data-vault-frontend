@@ -11,6 +11,8 @@ export default async function Page() {
   const session = await getSession();
   if(session) {
     redirect('/home');
+  }else{
+    redirect('/login');
   }
   return (
     <div className="m-auto max-w-md space-y-1 flex justify-center mt-40 p-16">
