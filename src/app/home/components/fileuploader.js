@@ -4,7 +4,7 @@ import { sendData  } from './ServerActions/upload';
 import { redirect } from "next/navigation";
 import { buttonVariants } from '../../../components/ui/button'; // replace with the actual path
 
-const FileUpload = () => {
+const FileUpload = async () => {
     const handleUpload = async (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -15,10 +15,12 @@ const FileUpload = () => {
             const data = { filename: file.name, base64 };
             console.log(data);
             const response = await sendData(data.base64, data.filename);
-            redirect("/home");
-        };
-
-        reader.readAsDataURL(file); // Read the file as data URL
+            // redirect("/home");
+            console.log(response);
+            window.location.reload();
+          };
+          
+          reader.readAsDataURL(file); // Read the file as data URL
     };
 
   return (

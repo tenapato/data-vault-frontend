@@ -68,6 +68,7 @@ export default async function Home(){
                   <TableHead className="w-[100px]">Filename</TableHead>
                   <TableHead>Type</TableHead>
                   <TableHead>Size</TableHead>
+                  <TableHead>Uploaded</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -84,6 +85,7 @@ export default async function Home(){
                         ? `${(file.size / 1024).toFixed(3)} KB`
                         : `${file.size} bytes`}
                     </TableCell>
+                    <TableCell>{new Date(file.uploaded).toLocaleString('es-MX', { timeZone: 'America/Mexico_City' })}</TableCell>
                     <TableCell>
                       <div className="flex m-auto">
                         <ActionButton name="Download" id={file.key}  />

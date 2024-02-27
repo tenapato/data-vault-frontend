@@ -13,5 +13,5 @@ export async function sendData(data, filename){
         body: JSON.stringify({data: data, filename: filename})
     });
     return response.json();
-
+    
 }
