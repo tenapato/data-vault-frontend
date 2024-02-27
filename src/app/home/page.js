@@ -40,9 +40,8 @@ export default async function Home(){
   }
   return (
     <div className="flex min-h-screen w-full">
-        <Sidebar/>
       <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
-        {/* Sidebar content */}
+        <Sidebar/>
       </div>
       
       {/* Main content */}

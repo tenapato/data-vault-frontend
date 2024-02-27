@@ -35,7 +35,7 @@ export default async function Sidebar() {
       <div className="flex h-[60px] items-center border-b px-6">
         <Link className="flex items-center gap-2 font-semibold" href="#">
           <Package2Icon className="h-6 w-6" />
-          <span className="">Data Vault</span>
+          <span className="">Data Vault</span><span className="rounded-full bg-orange-500 text-white px-2 py-1 text-sm">Alpha</span>
         </Link>
         <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
           <BellIcon className="h-4 w-4" />
@@ -69,6 +69,16 @@ export default async function Sidebar() {
       </div>
       <div className="mt-auto p-4">
         <Card>
+          <Usage
+            title="Data Usage"
+            description="Check how much data you've used this month."
+            dataUsed={storage?.used_data.toFixed(3)}
+            dataLimit={storage?.data_limit}
+          />
+        </Card>
+      </div>
+      <div className="mt-auto p-4">
+        <Card>
           <CardHeader className="pb-4">
             <CardTitle>Upgrade to Pro</CardTitle>
             <CardDescription>
@@ -80,16 +90,6 @@ export default async function Sidebar() {
               Upgrade
             </Button>
           </CardContent>
-        </Card>
-      </div>
-      <div className="mt-auto p-4">
-        <Card>
-          <Usage
-            title="Data Usage"
-            description="Check how much data you've used this month."
-            dataUsed={storage?.used_data.toFixed(3)}
-            dataLimit={storage?.data_limit}
-          />
         </Card>
       </div>
     </div>
