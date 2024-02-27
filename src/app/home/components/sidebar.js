@@ -2,8 +2,34 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { HomeIcon, UploadIcon, DownloadIcon, Package2Icon, BellIcon } from "./icons"; // Importing icon components from another file
+import { Usage } from './usage'; 
 
-export default function Sidebar() {
+import { getSession } from "../../../lib/lib";
+import { buttonVariants } from '../../../components/ui/button'; // replace with the actual path
+
+async function getTotalStorage(){
+  try {
+    const session = await getSession();
+    let token = session.signed_user_token;
+    const response = await fetch(`${process.env.BASE_URL}/api/v1/files/total-storage`, {
+      method: "GET",
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(response => response.json())
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+
+}
+export default async function Sidebar() {
+  let storage = await getTotalStorage();
+  console.log(storage);
   return (
     <div className="flex h-full flex-col gap-2">
       <div className="flex h-[60px] items-center border-b px-6">
@@ -42,17 +68,28 @@ export default function Sidebar() {
         </nav>
       </div>
       <div className="mt-auto p-4">
-        
         <Card>
           <CardHeader className="pb-4">
             <CardTitle>Upgrade to Pro</CardTitle>
-            <CardDescription>Unlock all features and get unlimited access to our support team</CardDescription>
+            <CardDescription>
+              Unlock all features and get unlimited access to our support team
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <Button className="w-full" size="sm">
               Upgrade
             </Button>
           </CardContent>
+        </Card>
+      </div>
+      <div className="mt-auto p-4">
+        <Card>
+          <Usage
+            title="Data Usage"
+            description="Check how much data you've used this month."
+            dataUsed={storage?.used_data.toFixed(3)}
+            dataLimit={storage?.data_limit}
+          />
         </Card>
       </div>
     </div>

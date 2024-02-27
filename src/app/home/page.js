@@ -9,6 +9,8 @@ import Sidebar from "./components/sidebar"
 import Header from "./components/header"
 import { getSession } from "../../lib/lib";
 import dynamic from 'next/dynamic';
+import ActionButton from "./components/ActionButton"
+
 const FileUpload = dynamic(() => import('./components/fileuploader'), { ssr: false });
 async function getFiles(){
   try {
@@ -67,6 +69,7 @@ export default async function Home(){
                   <TableHead className="w-[100px]">Filename</TableHead>
                   <TableHead>Type</TableHead>
                   <TableHead>Size</TableHead>
+                  <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -81,6 +84,12 @@ export default async function Home(){
                         : file.size >= 1024
                         ? `${(file.size / 1024).toFixed(3)} KB`
                         : `${file.size} bytes`}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex m-auto">
+                        <ActionButton name="Download" id={file.key}  />
+                        <ActionButton name="Delete" id={file.key}  />
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}

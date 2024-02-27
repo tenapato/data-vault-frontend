@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { sendData  } from './upload';
+import { sendData  } from './ServerActions/upload';
 import { redirect } from "next/navigation";
 import { buttonVariants } from '../../../components/ui/button'; // replace with the actual path
 
