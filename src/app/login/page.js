@@ -5,11 +5,18 @@ import { Button } from "@/components/ui/button"
 import { Toggle } from "@/components/ui/toggle"
 import { getSession, login, logout } from "../../lib/lib";
 import { redirect } from "next/navigation";
+import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card"
 
 export default async function Page() {
   const session = await getSession();
+  if(session) {
+    redirect('/home');
+  }
   return (
-    <div className="mx-auto max-w-md space-y-4">
+    <div className="m-auto max-w-md space-y-1 flex justify-center mt-40 p-16">
+      <Card className = "p-16">
+        <CardTitle>Data Vault</CardTitle>
+        <CardHeader>Sign In</CardHeader>
     <section>
       <form
         action={async (formData) => {
@@ -37,10 +44,11 @@ export default async function Page() {
           redirect("/");
         }}
       >
-        <button type="submit">Logout</button>
+        {/* <button type="submit">Logout</button> */}
       </form>
       {/* <pre>{JSON.stringify(session, null, 2)}</pre> */}
     </section>
+    </Card>
     </div>
   );
 }
