@@ -55,7 +55,7 @@ export async function login(formData) {
   // Verify credentials && get the user
 //   const user = { email: formData.get("email"), name: "John" };
 
-  const user = { email: formData.get("email"), password: formData.get("password"), name: "John" };
+  const user = { email: formData.get("email"), password: formData.get("password")};
 
   let user_test = await signIn(user.email,user.password);
 
@@ -71,6 +71,20 @@ const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 1 week
 
   // Save the session in a cookie
   cookies().set("session", session, { expires, httpOnly: true });
+}
+export async function singUp(formData){
+  const response = await fetch(
+    `${process.env.BASE_URL}/api/v1/users/signup`,
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: formData.get("email"), password: formData.get("password") }) // Fixed the body parameter
+    }
+).then((response) => response.json());
+
+console.log(response);
 }
 
 export async function logout() {
