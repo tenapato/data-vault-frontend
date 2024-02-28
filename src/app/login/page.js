@@ -15,8 +15,9 @@ export default async function Page() {
   }
   return (
     <div className="m-auto max-w-md space-y-1 flex justify-center mt-40 p-16">
-      <Card className="p-16">
+      <Card className="p-16 ">
         <CardTitle>Data Vault</CardTitle>
+      <span className="rounded-full bg-orange-500 text-white px-2 py-1 text-sm">Alpha</span>
         <CardHeader>Sign In</CardHeader>
         <section>
           <form
