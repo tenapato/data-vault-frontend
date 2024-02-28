@@ -59,7 +59,8 @@ export default function Header() {
             action={async () => {
               "use server";
               // await logout();
-              cookies().set("session", "", { expires: new Date(0) }); 
+              cookies().delete('session')
+              // cookies().set("session", "", { expires: new Date(0) }); 
               redirect("/");
             }}
           >
