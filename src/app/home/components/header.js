@@ -7,6 +7,7 @@ import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@
 import { HomeIcon, UploadIcon, DownloadIcon, Package2Icon, BellIcon, SearchIcon } from "./icons"; // Importing icon components from another file
 import {logout} from "../../../lib/lib";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 export default function Header() {
   return (
@@ -57,15 +58,16 @@ export default function Header() {
           <form
             action={async () => {
               "use server";
-              await logout();
+              // await logout();
+              cookies().set("session", "", { expires: new Date(0) }); 
               redirect("/");
             }}
           >
             <div>
               {/* <button type="submit">Logout</button> */}
-              {/* <DropdownMenuItem> */}
+              <DropdownMenuItem>
                 <button type="submit">Logout</button>
-              {/* </DropdownMenuItem> */}
+              </DropdownMenuItem>
             </div>
           </form>
         </DropdownMenuContent>
