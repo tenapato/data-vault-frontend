@@ -4,7 +4,7 @@ Developed by: Patricio Tena
 tenapatricio@gmail.com
 ---
 
-Url: https://datavaults.com/
+Url: https://datavaults.app/
 
 ![datavault](docs/Screenshot%202024-02-28%20at%205.50.03 p.m..png)
 
