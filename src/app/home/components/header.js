@@ -4,8 +4,8 @@ import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/com
 import { Input } from "@/components/ui/input"
 import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
-import { HomeIcon, UploadIcon, DownloadIcon, Package2Icon, BellIcon, SearchIcon } from "./components/icons"; // Importing icon components from another file
-import {logout} from "../../lib/lib";
+import { HomeIcon, UploadIcon, DownloadIcon, Package2Icon, BellIcon, SearchIcon } from "./icons"; // Importing icon components from another file
+import {logout} from "../../../lib/lib";
 import { redirect } from "next/navigation";
 
 export default function Header() {
@@ -58,7 +58,7 @@ export default function Header() {
             action={async () => {
               "use server";
               await logout();
-              redirect("/");
+              redirect("/login");
             }}
           >
             <div>

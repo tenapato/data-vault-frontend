@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
 import Sidebar from "./components/sidebar"
-import Header from "./header"
+import Header from "./components/header"
 import { getSession } from "../../lib/lib";
 import dynamic from 'next/dynamic';
 import ActionButton from "./components/ActionButton"
