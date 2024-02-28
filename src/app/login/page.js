@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Toggle } from "@/components/ui/toggle"
-import { getSession, login, logout } from "../../lib/lib";
+import { getSession, login, logout, loginWithGoogle} from "../../lib/lib";
 import { redirect } from "next/navigation";
 import { CardTitle, CardDescription, CardHeader, CardContent, Card, CardFooter } from "@/components/ui/card"
 import Link from "next/link";
@@ -39,6 +39,25 @@ export default async function Page() {
                 Sign In
               </Button>
             </div>
+          </form>
+            {/* <Button className="w-full mt-4" onClick={loginWithGoogle}>
+              Login with Google
+            </Button> */}
+            <form
+            action={async () => {
+              "use server";
+              // Call the action for the second form
+              const  data  = await loginWithGoogle();
+              // if (data && data.data.url) {
+              //   redirect(data.data.url);
+              // }
+              // redirect("/home");
+            }}
+          >
+            {/* Add your form fields here */}
+            <Button className="w-full" type="submit">
+              Google
+            </Button>
           </form>
           <form
             action={async () => {

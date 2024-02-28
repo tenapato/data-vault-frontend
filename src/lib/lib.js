@@ -1,4 +1,5 @@
 import { SignJWT, jwtVerify } from "jose";
+import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -86,7 +87,25 @@ export async function singUp(formData){
 
 console.log(response);
 }
+export async function loginWithGoogle() {
+  try {
+    const response = await fetch(
+      `${process.env.BASE_URL}/api/v1/users/google-signin`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((response) => response.json());
 
+    console.log(response.data.url);
+    // redirect(response.data.url);
+    // return response;
+  } catch (error) {
+    console.error('Failed to login with Google:', error);
+  }
+}
 export async function logout() {
   // Destroy the session
   cookies().set("session", "", { expires: new Date(0) });
